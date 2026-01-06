@@ -8,8 +8,6 @@ using namespace std;
 
 const int MAX_AKTOR = 10;
 
-// ===== STRUKTUR DATA =====
-
 struct Film {
     string judul;
     int durasi;
@@ -25,23 +23,19 @@ struct Node {
     Node* right;
 };
 
-// ===== DEKLARASI OPERASI BST =====
-
+//DEKLARASI OPERASI BST
 Node* buatNode(Film film);
 Node* insertBST(Node* root, Film film);
 Node* cariFilm(Node* root, string judul);
 
-// ===== OPERASI AKTOR =====
-
+//OPERASI AKTOR
 void tambahAktor(Node* film, string namaAktor);
 void hapusAktor(Node* film, string namaAktor);
 
-// ===== TRAVERSAL =====
-
+//TRAVERSAL
 void inorder(Node* root);
 
-// ===== PENGOLAHAN DATA =====
-
+//PENGOLAHAN DATA
 int hitungFilm(Node* root);
 void cariDurasi(Node* root, Node*& minFilm, Node*& maxFilm);
 

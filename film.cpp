@@ -4,8 +4,7 @@
 #include <iostream>
 using namespace std;
 
-// ===== BST =====
-
+//BST
 Node* buatNode(Film film) {
     Node* baru = new Node;
     baru->data = film;
@@ -38,8 +37,7 @@ Node* cariFilm(Node* root, string judul) {
         return cariFilm(root->right, judul);
 }
 
-// ===== OPERASI AKTOR =====
-
+//OPERASI AKTOR 
 void tambahAktor(Node* film, string namaAktor) {
     if (film->data.jumlahAktor < MAX_AKTOR) {
         film->data.aktor[film->data.jumlahAktor++] = namaAktor;
@@ -63,8 +61,7 @@ void hapusAktor(Node* film, string namaAktor) {
     cout << "Aktor tidak ditemukan.\n";
 }
 
-// ===== TRAVERSAL =====
-
+//TRAVERSAL
 void inorder(Node* root) {
     if (root != NULL) {
         inorder(root->left);
@@ -82,8 +79,7 @@ void inorder(Node* root) {
     }
 }
 
-// ===== PENGOLAHAN DATA =====
-
+//PENGOLAHAN DATA
 int hitungFilm(Node* root) {
     if (root == NULL)
         return 0;

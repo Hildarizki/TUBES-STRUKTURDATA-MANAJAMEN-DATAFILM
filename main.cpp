@@ -22,72 +22,125 @@ int main() {
         cin >> pilihan;
         cin.ignore();
 
-        if (pilihan == 1) {
-            Film film;
-            film.jumlahAktor = 0;
+        switch (pilihan) {
+            case 1: {
+                Film film;
+                film.jumlahAktor = 0;
 
-            cout << "Judul Film : ";
-            getline(cin, film.judul);
-            cout << "Durasi     : ";
-            cin >> film.durasi;
-            cin.ignore();
-            cout << "Genre      : ";
-            getline(cin, film.genre);
-            cout << "Tahun      : ";
-            cin >> film.tahun;
+                cout << "Judul Film : ";
+                getline(cin, film.judul);
+                cout << "Durasi     : ";
+                cin >> film.durasi;
+                cin.ignore();
+                cout << "Genre      : ";
+                getline(cin, film.genre);
+                cout << "Tahun      : ";
+                cin >> film.tahun;
+                cin.ignore();
 
-            root = insertBST(root, film);
-        }
-        else if (pilihan == 2) {
-            inorder(root);
-        }
-        else if (pilihan == 3) {
-            string judul;
-            cout << "Masukkan judul film: ";
-            getline(cin, judul);
-
-            Node* film = cariFilm(root, judul);
-            if (film != NULL)
-                cout << "Film ditemukan!\n";
-            else
-                cout << "Film tidak ditemukan.\n";
-        }
-        else if (pilihan == 4) {
-            string judul, aktor;
-            cout << "Judul Film: ";
-            getline(cin, judul);
-
-            Node* film = cariFilm(root, judul);
-            if (film != NULL) {
-                cout << "Nama Aktor: ";
-                getline(cin, aktor);
-                tambahAktor(film, aktor);
+                root = insertBST(root, film);
+                break;
             }
-        }
-        else if (pilihan == 5) {
-            string judul, aktor;
-            cout << "Judul Film: ";
-            getline(cin, judul);
 
-            Node* film = cariFilm(root, judul);
-            if (film != NULL) {
-                cout << "Nama Aktor: ";
-                getline(cin, aktor);
-                hapusAktor(film, aktor);
+            case 2: {
+                if (root == NULL) {
+                    cout << "Data film kosong!\n";
+                } else {
+                    inorder(root);
+                }
+                break;
             }
-        }
-        else if (pilihan == 6) {
-            cout << "Total film: " << hitungFilm(root) << endl;
-        }
-        else if (pilihan == 7) {
-            Node* minFilm = NULL;
-            Node* maxFilm = NULL;
-            cariDurasi(root, minFilm, maxFilm);
 
-            if (minFilm && maxFilm) {
-                cout << "Film Tercepat : " << minFilm->data.judul << endl;
-                cout << "Film Terlama  : " << maxFilm->data.judul << endl;
+            case 3: {
+                if (root == NULL) {
+                    cout << "Data film kosong!\n";
+                    break;
+                }
+                string judul;
+                cout << "Masukkan judul film: ";
+                getline(cin, judul);
+
+                Node* film = cariFilm(root, judul);
+                if (film != NULL)
+                    cout << "Film ditemukan!\n";
+                else
+                    cout << "Film tidak ditemukan.\n";
+                break;
             }
+
+            case 4: {
+                if (root == NULL) {
+                    cout << "Data film kosong!\n";
+                    break;
+                }
+                string judul, aktor;
+                cout << "Judul Film: ";
+                getline(cin, judul);
+
+                Node* film = cariFilm(root, judul);
+                if (film != NULL) {
+                    cout << "Nama Aktor: ";
+                    getline(cin, aktor);
+                    tambahAktor(film, aktor);
+                } else {
+                    cout << "Film tidak ditemukan!\n";
+                }
+                break;
+            }
+
+            case 5: {
+                if (root == NULL) {
+                    cout << "Data film kosong!\n";
+                    break;
+                }
+                string judul, aktor;
+                cout << "Judul Film: ";
+                getline(cin, judul);
+
+                Node* film = cariFilm(root, judul);
+                if (film != NULL) {
+                    cout << "Nama Aktor: ";
+                    getline(cin, aktor);
+                    hapusAktor(film, aktor);
+                } else {
+                    cout << "Film tidak ditemukan!\n";
+                }
+                break;
+            }
+
+            case 6: {
+                int total = hitungFilm(root);
+                if (total == 0)
+                    cout << "Data film kosong!\n";
+                else
+                    cout << "Total film: " << total << endl;
+                break;
+            }
+
+            case 7: {
+                if (root == NULL) {
+                    cout << "Data film kosong!\n";
+                    break;
+                }
+                Node* minFilm = NULL;
+                Node* maxFilm = NULL;
+                cariDurasi(root, minFilm, maxFilm);
+
+                if (minFilm && maxFilm) {
+                    cout << "Film Tercepat : " << minFilm->data.judul << endl;
+                    cout << "Film Terlama  : " << maxFilm->data.judul << endl;
+                } else {
+                    cout << "Data film kosong!\n";
+                }
+                break;
+            }
+
+            case 0:
+                cout << "Keluar dari program...\n";
+                break;
+
+            default:
+                cout << "Pilihan tidak valid!\n";
         }
 
     } while (pilihan != 0);
